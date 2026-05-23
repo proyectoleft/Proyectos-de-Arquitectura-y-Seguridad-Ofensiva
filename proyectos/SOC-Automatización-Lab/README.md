@@ -46,11 +46,11 @@ cd Shuffle
 sudo docker compose up -d
 ```
 
-![alt text](imagenes/image-19.png)
+![alt text](Imagenes/image-19.png)
 
 veremos en que puerto esta alojado:
 
-![alt text](imagenes/image-20.png)
+![alt text](Imagenes/image-20.png)
 
 Una vez reiniciado, descarga y enciende Shuffle, aparecerán varias interfaces de red (debido a Docker); usa la terminal para ver la IP de tu máquina Ubuntu
 
@@ -59,7 +59,7 @@ Shuffle se alojará en el puerto 3443 (por ejemplo, si la IP es 172.16.1.7, la i
 ```bash
 ip -br a
 ```
-![alt text](imagenes/image-46.png)
+![alt text](Imagenes/image-46.png)
 
 
 ```bash
@@ -70,13 +70,13 @@ https://172.16.1.7:3443/login
 
 Crearemos nuestro proyecto
 
-![alt text](imagenes/image-21.png)
+![alt text](Imagenes/image-21.png)
 
 ## Integracion con Wazuh
 
 En el lienzo arrastramos un webhook (la que parece un spinner), **Importante anotar la URL, al momento de hacer la prueba darle a "Start"**
 
-![alt text](imagenes/image-22.png)
+![alt text](Imagenes/image-22.png)
 
 ### Despliege de Wazuh
 
@@ -89,7 +89,7 @@ En la terminal, buscaremos nuestra ip, y la buscaremos en el navegador, en mi ca
 ip a
 ```
 
-![alt text](imagenes/image-45.png)
+![alt text](Imagenes/image-45.png)
 
 Ahora en Wazuh, las credenciales del portal web por defecto seran:
 
@@ -104,7 +104,7 @@ Entre **global y alerts**, agregar la integracion y darle a guardar
 
 * **IMPORTANTE**, Puesto que más adelante se incorporará una IA con tokens limitados, configura la alerta para un nivel específico (ejemplo, nivel 6 para ataques de fuerza bruta) para evitar consumir los tokens con cada log regular
 
-![alt text](imagenes/image-59.png)
+![alt text](Imagenes/image-59.png)
 
 ```bash
   <integration>
@@ -119,7 +119,7 @@ Entre **global y alerts**, agregar la integracion y darle a guardar
 
 En el wazuh
 
-![alt text](imagenes/image-3.png)
+![alt text](Imagenes/image-3.png)
 
 * Selecciona el sistema operativo Windows en Wazuh
 * En **Server address**, coloca la IP de Wazuh para que el agente sepa a quién reportar
@@ -127,7 +127,7 @@ En el wazuh
 
 Aparecera un codigo para descargar el agente, y como iniciarlo
 
-![alt text](imagenes/image-24.png)
+![alt text](Imagenes/image-24.png)
 
 Abrimos la powershell como administrador en nuestra maquina windows y ejecutamos los comandos que nos dio el wazuh, en mi caso:
 
@@ -141,13 +141,13 @@ NET START Wazuh
 
 Y volviendo al panel de wazuh veremos que tendremos el agente
 
-![alt text](imagenes/image-25.png)
+![alt text](Imagenes/image-25.png)
 
 ### Probando la conexion con shaffle
 
 Veremos las ip de nuestra maquina windows con "ipconfig", 
 
-![alt text](imagenes/image-26.png)
+![alt text](Imagenes/image-26.png)
 
 
 ### Llegada al shuffle
@@ -180,13 +180,13 @@ nxc smb 172.16.1.9 -u admin -p passwords.txt
 
 En el shuffle (**Recordarle haber dado a start**), se veran los logs
 
-![alt text](imagenes/image-27.png)
+![alt text](Imagenes/image-27.png)
 
 ## Construccion
 
 ### Nodo Jira (Gestión de Tickets)
 
-![alt text](imagenes/image-47.png)
+![alt text](Imagenes/image-47.png)
 
 Ahora integraremos lo mas parecido a una ticketera, en mi caso jira, ya que sera un servicio SaaS, The hive puede ser una opcion pero requerira mas RAM de mi PC, y al tener todo encendido me consume casi toda mi RAM (32 GB)
 
@@ -196,13 +196,13 @@ Crearse una cuenta en jira en "https://www.atlassian.com/es/software/jira" y des
 * En password colocar la API
 * En la URL, se ecuentra en la apgina de jira
 
-![alt text](imagenes/image-42.png)
+![alt text](Imagenes/image-42.png)
 
-![alt text](imagenes/image-37.png)
+![alt text](Imagenes/image-37.png)
 
 En jira iremos a la seccion de **"post create issue"**
 
-![alt text](imagenes/image-41.png)
+![alt text](Imagenes/image-41.png)
 
 **IMPORTANTE** Debes construir correctamente el body y los headers en Shuffle para que Jira acepte los parámetros que le envíes desde el Webhook, en mi caso uso el siguiente en "Body":
 
@@ -306,7 +306,7 @@ En headers pondremos
 
 Ya con el webhook funcionando, se arrastrara un HTTP para integrar gemini
 
-![alt text](imagenes/image-43.png)
+![alt text](Imagenes/image-43.png)
 
 Crearemos un clave API en :https://aistudio.google.com/app/api-keys?projectFilter=gen-lang-client-0609086102
 
@@ -337,7 +337,7 @@ En Header colocamos:
 
 En timeout, poner 60-120 aprox
 
-![alt text](imagenes/image-40.png)
+![alt text](Imagenes/image-40.png)
 
 Para saber los modelos de IA, podemos ejecutar en nuestro kali, Por si queremos cambiar de modelo, en mi caso escogi "gemini-2.5-flash", o sino probar el "gemma-4-26b-a4b-it" (que tambien me funciono pero es mas lento)
 
@@ -345,7 +345,7 @@ Para saber los modelos de IA, podemos ejecutar en nuestro kali, Por si queremos 
 curl -s "https://generativelanguage.googleapis.com/v1beta/models?key=TU_CLAVE_API" | grep '"name"'
 ```
 
-![alt text](imagenes/image-38.png)
+![alt text](Imagenes/image-38.png)
 
 ### Nodo Email
 
@@ -353,11 +353,11 @@ El ticket creado tendrá datos básicos, por lo que usaremos el nodo HTTP para q
 
 Arrastraremos al lienzo email y lo unimos al http
 
-![alt text](imagenes/image-44.png)
+![alt text](Imagenes/image-44.png)
 
 Cambio a **Send email smtp** y en los campos pondremos:
 
-![alt text](imagenes/image-48.png)
+![alt text](Imagenes/image-48.png)
 
 1. **Username**: Escribe el email completo de la persona que enviara el correo al analista
 2. **Password**: al darle en (opcional parameters): debes ir a "https://myaccount.google.com/"
@@ -370,7 +370,9 @@ Cambio a **Send email smtp** y en los campos pondremos:
 5. **Recipient**: pone el correo de la persona a la que le llegara, en mi escenario sera le analista
 6. **cc emails**: vacio
 7. **Subject**: Sera el mensaje que le llegara al correo del analista, tendremos que poner la respuesta que nos de la IA del nodo http, **En mi caso lo adapte poniendo '0' en ves de '#'**:
-![alt text](imagenes/image-60.png)
+   
+![alt text](Imagenes/image-60.png)
+
 ```bash
 <p>Aquí tienes el análisis automático generado por IA:</p>
 $http_1.body.candidates.0.content.parts.0.text
@@ -382,33 +384,33 @@ $http_1.body.candidates.0.content.parts.0.text
 
 1. Ya con todo integrado, verificaremos el log, en el webhook, le damos a start
 
-![alt text](imagenes/image-49.png)
+![alt text](Imagenes/image-49.png)
 
 2. En el kali, lanzamos un ataque de fuerza bruta, (ajustar en nivel en el wazuh, en mi caso puse 6)
 
-![alt text](imagenes/image-50.png)
+![alt text](Imagenes/image-50.png)
 
 * Llegan los logs al shuffle
 
-![alt text](imagenes/image-53.png)
+![alt text](Imagenes/image-53.png)
 
 3. Al pasar por jira, se crean los tickets (en mi caso que hice muchas pruebas en la construccion por ello llega empezando con la numeracion 32, 33 , 34)
 
-![alt text](imagenes/image-54.png)
+![alt text](Imagenes/image-54.png)
 
 * Abriendo SOP-34
 
-![alt text](imagenes/image-56.png)
+![alt text](Imagenes/image-56.png)
 
 4. Pasa por el nodo http, donde la IA analiza el log y genera un reporte y tal reporte se envia al correo del analista
 
-![alt text](imagenes/image-52.png)
+![alt text](Imagenes/image-52.png)
 
 * Reporte de SOP-34
 
-![alt text](imagenes/image-55.png)
-![alt text](imagenes/image-57.png)
-![alt text](imagenes/image-58.png)
+![alt text](Imagenes/image-55.png)
+![alt text](Imagenes/image-57.png)
+![alt text](Imagenes/image-58.png)
 
 
 
