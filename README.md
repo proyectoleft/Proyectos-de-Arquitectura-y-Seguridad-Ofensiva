@@ -9,7 +9,7 @@ Aquí comparto mi progreso tanto en **Seguridad Ofensiva (Red Team)** mediante l
 El contenido está organizado de la siguiente manera:
 
 ### 🛡️ 1. Proyectos de Arquitectura y Operaciones (SOC)
-* **/SOC-Automation-Lab:** Prueba de concepto (PoC) de un flujo de respuesta a incidentes automatizado. Integración de Wazuh (SIEM), Shuffle (SOAR), gestión de tickets en Jira y análisis de alertas impulsado por Inteligencia Artificial (LLMs).
+* **/Proyectos:** Colección de proyectos personales enfocados en el entendimiento profundo de entornos corporativos.
 
 ### ⚔️ 2. Seguridad Ofensiva (Writeups)
 * **/HackTheBox (HTB):** *Writeups* detallados de la resolución de máquinas (Fases de reconocimiento, enumeración, explotación y escalada de privilegios).
