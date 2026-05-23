@@ -1,4 +1,13 @@
 # DOCUMENTACION
+> **💡 Sobre este Proyecto y mi Motivación**
+> 
+> En este proyecto busco recrear el ecosistema central de un Centro de Operaciones de Seguridad (SOC) funcional dentro de un entorno de laboratorio local (virtualizado con 32 GB de RAM). El objetivo principal es salir de la teoría y demostrar de forma práctica cómo se interconectan las tecnologías empresariales para defender una red.
+>
+> Más allá de la simple instalación de máquinas, este laboratorio busca evidenciar mi comprensión sobre cómo fluye la información en un entorno corporativo. Para ello, he incorporado conceptos técnicos como la automatización, la gestión de alertas mediante Webhooks y APIs, y la integración de Inteligencia Artificial (LLMs) aplicada al análisis de logs crudos.
+> 
+> A través de la orquestación de un SIEM (Wazuh), un SOAR (Shuffle) y una plataforma de Ticketing (Jira), trato de demostrar cómo se puede combatir la "fatiga de alertas" que sufren los analistas hoy en día. Además, aplico una mentalidad *Purple Team*: no solo construyo y configuro la defensa, sino que valido su eficacia lanzando ataques reales (como fuerza bruta vía SMB) desde una máquina ofensiva para asegurar que el flujo de detección y respuesta funcione de extremo a extremo.
+
+
 ## Maquinas
 Para este laboratorio se utilizarán las siguientes máquinas en VMware:
 
