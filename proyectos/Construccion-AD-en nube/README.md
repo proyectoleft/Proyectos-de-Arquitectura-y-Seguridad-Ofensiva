@@ -12,7 +12,7 @@ El entorno está pensado como un campo de pruebas para simulaciones de cibersegu
 ## 🏗️ Arquitectura de la Infraestructura
 A continuación, se presenta el mapa de topología de los recursos desplegados en Azure, mostrando la relación entre la red virtual, las interfaces de red, los grupos de seguridad (NSG) y el recolector de logs.
 
-![Topología de la Arquitectura en Azure](./CBN08-Cardenas.jpg)
+![Topología de la Arquitectura en Azure](./CBN08-Cardenas.png)
 
 El laboratorio consta de los siguientes componentes dentro de la VNet (`10.0.0.0/16`):
 
