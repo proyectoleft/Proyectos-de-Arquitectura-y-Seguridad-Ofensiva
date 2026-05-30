@@ -10,6 +10,9 @@ El entorno está pensado como un campo de pruebas para simulaciones de cibersegu
 * **Auditoría y Monitoreo (SIEM):** Implementación de políticas de grupo (GPOs) para la auditoría de eventos críticos (Logon/Logoff, creación de cuentas) y su reenvío a un Workspace de Log Analytics mediante Data Collection Rules (DCR) y el Azure Monitor Agent (AMA).
 
 ## 🏗️ Arquitectura de la Infraestructura
+A continuación, se presenta el mapa de topología de los recursos desplegados en Azure, mostrando la relación entre la red virtual, las interfaces de red, los grupos de seguridad (NSG) y el recolector de logs.
+
+![Topología de la Arquitectura en Azure](./CBN08-Cardenas.jpg)
 
 El laboratorio consta de los siguientes componentes dentro de la VNet (`10.0.0.0/16`):
 
