@@ -39,7 +39,7 @@ resource "azurerm_windows_virtual_machine" "res-1" {
   max_bid_price                                          = -1
   name                                                   = "Bastion-host"
   network_interface_ids                                  = [azurerm_network_interface.res-9.id]
-  os_managed_disk_id                                     = "/subscriptions/ba372486-5d86-4a2e-8151-cdb5e1b16e98/resourceGroups/CBN08-CARDENAS/providers/Microsoft.Compute/disks/Bastion-host_OsDisk_1_abbc739cffc34768afd05512613ecfb1"
+  os_managed_disk_id                                     = "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/CBN08-CARDENAS/providers/Microsoft.Compute/disks/Bastion-host_OsDisk_1_abbc739cffc34768afd05512613ecfb1"
   patch_assessment_mode                                  = "ImageDefault"
   patch_mode                                             = "AutomaticByOS"
   platform_fault_domain                                  = -1
@@ -106,7 +106,7 @@ resource "azurerm_windows_virtual_machine" "res-2" {
   max_bid_price                                          = -1
   name                                                   = "W01"
   network_interface_ids                                  = [azurerm_network_interface.res-11.id]
-  os_managed_disk_id                                     = "/subscriptions/ba372486-5d86-4a2e-8151-cdb5e1b16e98/resourceGroups/CBN08-CARDENAS/providers/Microsoft.Compute/disks/W01_OsDisk_1_5c8e162c723a4e88a49f684f982ef5bd"
+  os_managed_disk_id                                     = "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/CBN08-CARDENAS/providers/Microsoft.Compute/disks/W01_OsDisk_1_5c8e162c723a4e88a49f684f982ef5bd"
   patch_assessment_mode                                  = "ImageDefault"
   patch_mode                                             = "AutomaticByOS"
   platform_fault_domain                                  = -1
@@ -190,7 +190,7 @@ resource "azurerm_windows_virtual_machine" "res-4" {
   max_bid_price                                          = -1
   name                                                   = "W02"
   network_interface_ids                                  = [azurerm_network_interface.res-13.id]
-  os_managed_disk_id                                     = "/subscriptions/ba372486-5d86-4a2e-8151-cdb5e1b16e98/resourceGroups/CBN08-CARDENAS/providers/Microsoft.Compute/disks/W02_OsDisk_1_85cf8c4bd0d340c8a1ba48606109562b"
+  os_managed_disk_id                                     = "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/CBN08-CARDENAS/providers/Microsoft.Compute/disks/W02_OsDisk_1_85cf8c4bd0d340c8a1ba48606109562b"
   patch_assessment_mode                                  = "ImageDefault"
   patch_mode                                             = "AutomaticByOS"
   platform_fault_domain                                  = -1
@@ -275,7 +275,7 @@ resource "azurerm_monitor_data_collection_rule" "res-6" {
   destinations {
     log_analytics {
       name                  = "la-1239935785"
-      workspace_resource_id = "/subscriptions/ba372486-5d86-4a2e-8151-cdb5e1b16e98/resourceGroups/CBN08-Cardenas/providers/Microsoft.OperationalInsights/workspaces/LogAnalytics-CBN08"
+      workspace_resource_id = "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/CBN08-Cardenas/providers/Microsoft.OperationalInsights/workspaces/LogAnalytics-CBN08"
     }
   }
 }
@@ -312,7 +312,7 @@ resource "azurerm_network_interface" "res-9" {
     private_ip_address_allocation                      = "Dynamic"
     private_ip_address_version                         = "IPv4"
     public_ip_address_id                               = azurerm_public_ip.res-25.id
-    subnet_id                                          = "/subscriptions/ba372486-5d86-4a2e-8151-cdb5e1b16e98/resourceGroups/CBN08-Cardenas/providers/Microsoft.Network/virtualNetworks/VNET1/subnets/default"
+    subnet_id                                          = "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/CBN08-Cardenas/providers/Microsoft.Network/virtualNetworks/VNET1/subnets/default"
   }
   depends_on = [
     # One of azurerm_subnet.res-28,azurerm_subnet_nat_gateway_association.res-29 (can't auto-resolve as their ids are identical)
@@ -342,7 +342,7 @@ resource "azurerm_network_interface" "res-11" {
     private_ip_address_allocation                      = "Static"
     private_ip_address_version                         = "IPv4"
     public_ip_address_id                               = ""
-    subnet_id                                          = "/subscriptions/ba372486-5d86-4a2e-8151-cdb5e1b16e98/resourceGroups/CBN08-Cardenas/providers/Microsoft.Network/virtualNetworks/VNET1/subnets/default"
+    subnet_id                                          = "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/CBN08-Cardenas/providers/Microsoft.Network/virtualNetworks/VNET1/subnets/default"
   }
   depends_on = [
     # One of azurerm_subnet.res-28,azurerm_subnet_nat_gateway_association.res-29 (can't auto-resolve as their ids are identical)
@@ -372,7 +372,7 @@ resource "azurerm_network_interface" "res-13" {
     private_ip_address_allocation                      = "Static"
     private_ip_address_version                         = "IPv4"
     public_ip_address_id                               = ""
-    subnet_id                                          = "/subscriptions/ba372486-5d86-4a2e-8151-cdb5e1b16e98/resourceGroups/CBN08-Cardenas/providers/Microsoft.Network/virtualNetworks/VNET1/subnets/default"
+    subnet_id                                          = "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/CBN08-Cardenas/providers/Microsoft.Network/virtualNetworks/VNET1/subnets/default"
   }
   depends_on = [
     # One of azurerm_subnet.res-28,azurerm_subnet_nat_gateway_association.res-29 (can't auto-resolve as their ids are identical)
@@ -402,7 +402,7 @@ resource "azurerm_network_interface" "res-15" {
     private_ip_address_allocation                      = "Static"
     private_ip_address_version                         = "IPv4"
     public_ip_address_id                               = ""
-    subnet_id                                          = "/subscriptions/ba372486-5d86-4a2e-8151-cdb5e1b16e98/resourceGroups/CBN08-Cardenas/providers/Microsoft.Network/virtualNetworks/VNET1/subnets/default"
+    subnet_id                                          = "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/CBN08-Cardenas/providers/Microsoft.Network/virtualNetworks/VNET1/subnets/default"
   }
   depends_on = [
     # One of azurerm_subnet.res-28,azurerm_subnet_nat_gateway_association.res-29 (can't auto-resolve as their ids are identical)
@@ -7090,7 +7090,7 @@ resource "azurerm_windows_virtual_machine" "res-735" {
   max_bid_price                                          = -1
   name                                                   = "WS1"
   network_interface_ids                                  = [azurerm_network_interface.res-15.id]
-  os_managed_disk_id                                     = "/subscriptions/ba372486-5d86-4a2e-8151-cdb5e1b16e98/resourceGroups/CBN08-CARDENAS/providers/Microsoft.Compute/disks/WS1_OsDisk_1_f2876b28e986451faaff8fe0465c24cd"
+  os_managed_disk_id                                     = "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/CBN08-CARDENAS/providers/Microsoft.Compute/disks/WS1_OsDisk_1_f2876b28e986451faaff8fe0465c24cd"
   patch_assessment_mode                                  = "ImageDefault"
   patch_mode                                             = "AutomaticByOS"
   platform_fault_domain                                  = -1
@@ -7148,7 +7148,7 @@ resource "azurerm_virtual_machine_extension" "res-736" {
   tags                        = {}
   type                        = "AzureMonitorWindowsAgent"
   type_handler_version        = "1.0"
-  virtual_machine_id          = "/subscriptions/ba372486-5d86-4a2e-8151-cdb5e1b16e98/resourceGroups/cbn08-cardenas/providers/Microsoft.Compute/virtualMachines/ws1"
+  virtual_machine_id          = "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/cbn08-cardenas/providers/Microsoft.Compute/virtualMachines/ws1"
   depends_on = [
     azurerm_windows_virtual_machine.res-735,
   ]
