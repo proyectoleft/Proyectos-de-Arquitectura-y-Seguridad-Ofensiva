@@ -4,7 +4,7 @@ Esta guía detalla el proceso paso a paso para desplegar un entorno de Active Di
 
 Crearemos un grupo de recursos, en el crearemos los dispositivos que contendra el AD y el bastions host (DMZ) con la cuenta gratuita
 
-![alt text](image-1.png)
+![alt text](./Images/image-1.png)
 
 ## 1. Preparación de la Infraestructura de Red
 
@@ -14,7 +14,7 @@ La VNet proporcionará el límite de aislamiento de red para nuestro entorno de 
 
 En el portal de Azure, dentro del Grupo de Recursos, seleccione **Crear** y busque **Virtual Network**.
 
-![alt text](image-2.png)
+![alt text](./Images/image-2.png)
 
 En mi caso
 
@@ -25,8 +25,8 @@ En mi caso
 
 > **Nota Arquitectónica:** Para proporcionar salida a internet a esta subred sin exponer los servidores mediante IPs públicas (lo cual sería un riesgo de seguridad crítico), implementaremos posteriormente un NAT Gateway.
 
-![alt text](image-3.png)
-![alt text](image-4.png)
+![alt text](./Images/image-3.png)
+![alt text](./Images/image-4.png)
 
 ## 2. Despliegue de maquinas virtuales (VMs)
 
@@ -54,11 +54,11 @@ En nuestro grupo, en la parte superior darle a crear y buscar "Windows 10"
 
 * Marcar la casilla de confirmación de licencias.
 
-![alt text](image-5.png)
+![alt text](./Images/image-5.png)
 
-![alt text](image-6.png)
+![alt text](./Images/image-6.png)
 
-![alt text](image-7.png)
+![alt text](./Images/image-7.png)
 
 ### 2.2 Creacion de Windows Server (WS1)
 
@@ -83,8 +83,8 @@ Para aislar el AD, este servidor **no** debe tener IP Pública.
 * **IP pública:** Ninguno
 * **Grupo de seguridad de red (NSG):** Avanzado -> Crear nuevo (Ej: NSG-Interno).
 
-![alt text](image-9.png)
-![alt text](image-8.png)
+![alt text](./Images/image-9.png)
+![alt text](./Images/image-8.png)
 
 ### 2.3 Creacion de w01 (windows 10)
 
@@ -105,7 +105,7 @@ Ademas
 
 En el apartado de redes
 
-![alt text](image-10.png)
+![alt text](./Images/image-10.png)
 
 ### 2.4 Creacion de W02 (Windows 10)
 
@@ -126,7 +126,7 @@ Ademas
 
 En el apartado de redes
 
-![alt text](image-11.png)
+![alt text](./Images/image-11.png)
 
 ### 2.4 Asignación de IP Estática en Azure
 
@@ -141,23 +141,23 @@ En mi caso, asignare las siguiente IPs en mis maquinas virtuales
 2. Vaya a **Configuraciones de IP** > Seleccione `ipconfig1`.
 3. Cambie la Asignación de Dinámica a **Estática** e ingrese la IP correspondiente. Guarde los cambios.
 
-![alt text](image-12.png)
+![alt text](./Images/image-12.png)
 
 ### 2.5 Configuración de Salida a Internet (NAT Gateway)
 
 Para que nuestra red interna (sin IPs públicas) pueda descargar actualizaciones, instalar roles y enviar logs a Log Analytics, requiere salida a Internet.
 
-![alt text](image-13.png)
+![alt text](./Images/image-13.png)
 
 En el apartado de IP de Salida
 
  daremos click en **"agregar prefijos o direcciones ip publica"** y en crear una direccion IP publica, **Le agregamos un nombre, verison de ip en IPv4**
 
-![alt text](image-15.png)
+![alt text](./Images/image-15.png)
 
 En el apartado de redes
 
-![alt text](image-16.png)
+![alt text](./Images/image-16.png)
 
 ## 3. Despliegue de Active Directory (AD DS)
 
@@ -165,11 +165,11 @@ En el apartado de redes
 
 IP de Bastion host
 
-![alt text](image-18.png)
+![alt text](./Images/image-18.png)
 
 IP de WS1
 
-![alt text](image-17.png)
+![alt text](./Images/image-17.png)
 
 1. En nuestro windows buscamos "conexion escritorio remoto", entrar con la ip de nuestro bastion host que en mi caso sera 20.86.162.182
 
@@ -186,7 +186,7 @@ Credenciales WS1:
 * **Usuario:** `<TU_USUARIO>`
 * **Contraseña:** `<TU_CONTRASEÑA>`
 
-![alt text](image-19.png)
+![alt text](./Images/image-19.png)
 
 En WS1 se mostrara la pantalla del Administrador del servidor (Server Manager) es donde configuraremos todo.
 
@@ -203,7 +203,7 @@ En WS1 se mostrara la pantalla del Administrador del servidor (Server Manager) e
 5. ¡Paso Clave! Llegarás a la lista de "Server Roles". Busca en la lista y marca la casilla que dice **"Active Directory Domain Services".**
 
 6. Inmediatamente saltará una pequeña ventana emergente indicando que se necesitan otras herramientas. Haz clic en el botón "Add Features" (Agregar características) dentro de esa ventanita, y luego haz clic en Next.
-![alt text](image-20.png)
+![alt text](./Images/image-20.png)
 
 
 7. En las siguientes pantallas ("Features" y "AD DS"), no cambiar nada, Solo hacer clic en **Next** hasta llegar al final.
@@ -214,14 +214,14 @@ En WS1 se mostrara la pantalla del Administrador del servidor (Server Manager) e
 
 En la parte superior derecha de tu pantalla del Server Manager. Hay un ícono de una bandera con un pequeño triángulo amarillo de advertencia, hacer click
 
-![alt text](image-21.png)
+![alt text](./Images/image-21.png)
 
 Se desplegará un menú. Ahí mismo aparecera el enlace azul que dice: **"Promote this server to a domain controller"** (Promover este servidor a controlador de dominio). Haz clic en ese enlace.
 
 1. Seleccionar la tercera opción: **"Add a new forest"** (Agregar un nuevo bosque).
 
 2. En la casilla de **"Root domain name"** (Nombre de dominio raíz), debes escribir el nombre de tu dominio, en mi caso "Contoso2.corp"
-![alt text](image-22.png)
+![alt text](./Images/image-22.png)
 
 3. Haz clic en Next, en la siguiente pantalla te pedirá que crees una contraseña de recuperación (DSRM password)
 4. Darle a **"next"** en los siguientes apartados hasta llegar al final y darle al boton **"install"**. Al terminar, el servidor se reiniciará solo para aplicar los cambios
@@ -233,16 +233,16 @@ Se desplegará un menú. Ahí mismo aparecera el enlace azul que dice: **"Promot
 
 1. Vaya a **Tools** > **Active Directory Users and Computers**.
 2. Expanda el dominio `Contoso2.corp`, haga clic derecho en **Users** > **New** > **User**.
-![alt text](image-23.png)
+![alt text](./Images/image-23.png)
 
-![alt text](image-24.png)
+![alt text](./Images/image-24.png)
 
 3. En mi caso creare: `USER01` y `USER02`.
 4. Asigne contraseñas. Para este laboratorio, marque **Password never expires** para evitar interrupciones por caducidad de credenciales.
 
-![alt text](image-25.png)
+![alt text](./Images/image-25.png)
 
-![alt text](image-26.png)
+![alt text](./Images/image-26.png)
 
 ### 4.2 Configuración de DNS y Unión de Equipos (W01 y W02)
 
@@ -250,7 +250,7 @@ Para que los equipos puedan resolver el nombre de dominio (`Contoso2.corp`), deb
 
 Desde WS1 via nos conectaremos  W01 y W02 via RDP
 
-![alt text](image-27.png)
+![alt text](./Images/image-27.png)
 
 **Credenciales W01:**
 * **ip**: 10.0.2.10
@@ -265,7 +265,7 @@ Desde WS1 via nos conectaremos  W01 y W02 via RDP
 1. En la maquina buscamos **"network view conexions"**
 2. Click derecho e ir a propiedades y abirmos el IPV4
 3. Hacemos que el DNS apunte a la IP de nuestro WS1
-![alt text](image-28.png)
+![alt text](./Images/image-28.png)
 
 **Unión al Dominio:**
 
@@ -279,13 +279,13 @@ Ahora buscamos **"about your pc"**
     * Usuario: CONTOSO2\`<TU_USUARIO>`
     * Contraseña: `<TU_USUARIO>`
 
-![alt text](image-29.png)
+![alt text](./Images/image-29.png)
 
 Ahora nos moveremos de *"computer name"* hacia el apartado *"Remote"*:
 
 1. Vamos a *select user*, clickeamos en **"ADD"**
 2. Agregaremos USER01 y USER 02, escribimos uno por uno, *USER01*  darle a checkname y agregarlos, colocar las credenciales del administrador de dominio
-![alt text](image-30.png)
+![alt text](./Images/image-30.png)
 
 **¡¡¡Repetir lo mismo para W02!!!**
 
@@ -299,19 +299,19 @@ En WS1, abrir **Tools** > **Group Policy Management**.
 
 1. Expanda el bosque > *Domains* > `Contoso2.corp`.
 2. Haga clic derecho en **Default Domain Policy** y seleccione **Edit**.
-![alt text](image-31.png)
+![alt text](./Images/image-31.png)
 
 3. Naveguar a: `Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > Audit Policy`.
 4. Configure **Audit account logon events** y **Audit logon events**, marcando las casillas de **Success** (Éxito) y **Failure** (Error).
 
-![alt text](image-32.png)
+![alt text](./Images/image-32.png)
 
 ### Revision de LOGS
 
 1.  En el Server Manager,en Tools y abrir el Event Viewer 
 2.	En el panel izquierdo, despliega la carpeta Windows Logs y haz clic en Security.
 3.	Se vera una lista enorme de eventos. En el panel de la derecha, haz clic en Filter Current Log... (Filtrar registro actual...).
-![alt text](image-33.png)
+![alt text](./Images/image-33.png)
 4.	En el medio que dice <All Event IDs>, escribe el número del ID del evento, por ejemplo 4720 y dale OK.
 5.	Vuelve a darle a Filter Current Log..., borra el número y ahora pon 4625 (Fallo al iniciar sesión) o 4624 (Inicio exitoso).
 
@@ -322,7 +322,7 @@ En WS1, abrir **Tools** > **Group Policy Management**.
 
 1. Busque **Log Analytics workspaces**o **Áreas de trabajo de Log Analytics** en Azure y seleccione Crear. (fura del grupo)
 
-![alt text](image-34.png)
+![alt text](./Images/image-34.png)
 
 Ahora vamos a crear tu contenedor de logs paso a paso:
 
@@ -336,7 +336,7 @@ Ahora vamos a crear tu contenedor de logs paso a paso:
 
 6. Región: ¡Muy importante! Asegurarse de poner la misma región donde creaste tus máquinas virtuales (En mi caso West Europe).
 
-![alt text](image-35.png)
+![alt text](./Images/image-35.png)
 
 ### B. Regla de Recopilación de Datos (Data Collection Rule - DCR)
 
@@ -346,7 +346,7 @@ La DCR define qué datos se recopilan y adónde se envían. Azure instalará aut
 
 1. Ve a la barra de búsqueda superior de Azure, busque **Data Collection Rules** o **Reglas de recopilación de datos** y seleccione *Crear*.
 
-![alt text](image-37.png)
+![alt text](./Images/image-37.png)
 
 **Paso 2: Pestaña "Datos básicos"**
 
@@ -370,8 +370,8 @@ Aquí es donde le decimos a quién vigilar.
 
 4. Dale a Aplicar.
 
-![alt text](image-38.png)
-![alt text](image-39.png)
+![alt text](./Images/image-38.png)
+![alt text](./Images/image-39.png)
 
 **Paso 4: Pestaña "Recopilar y entregar"**
 
@@ -382,11 +382,11 @@ Aquí le decimos qué información queremos y a dónde va.
 2. Tipo de origen de datos: En mi caso seleccione **Registros de eventos de Windows (Windows Event Logs)**.
 
 3. En mi caso uso (Basic / Custom). En la lista de eventos básicos y marco las 2 opciones de seguridad (Aquí es donde viven los logs de Logon y Account Management ).
-![alt text](image-40.png)
+![alt text](./Images/image-40.png)
 
 4. En la pestaña *Destino*, darle click a **"agregar destino"**.
 
-![alt text](image-41.png)
+![alt text](./Images/image-41.png)
 
 5. Guardamos y por ultimo creamos
 
@@ -402,4 +402,4 @@ Para verificar la ingesta de telemetría:
     Event
     | where EventID == 4720
 
-![alt text](image-42.png)
+![alt text](./Images/image-42.png)
