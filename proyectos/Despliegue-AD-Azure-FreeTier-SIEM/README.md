@@ -41,3 +41,16 @@ Este entorno base está listo para:
 * Prácticas de explotación de Active Directory (Kerberoasting, AS-REP Roasting).
 * Análisis de artefactos y detección de anomalías (Threat Hunting).
 * Integración futura de herramientas de recolección de logs adicionales u otros SIEMs.
+
+## 📜 Infraestructura como Código (Terraform)
+
+Para facilitar el despliegue rápido y la comprensión de los recursos a nivel de código, este repositorio incluye la configuración de la infraestructura en **Terraform** (archivo `main.tf`). 
+
+Este código está preparado para levantar la arquitectura base o "dura" de la topología (VNet, Subnets, NAT Gateway, NSGs y Máquinas Virtuales). La configuración del SIEM y la unión al dominio se realizan posteriormente siguiendo la guía de implementación.
+
+### ⚙️ Cómo utilizar la plantilla de Terraform:
+Si deseas levantar este laboratorio automatizado, asegúrate de modificar los siguientes valores en el archivo `main.tf` antes de ejecutar `terraform apply`:
+
+1. **ID de Suscripción:** Busca la cadena de enmascaramiento `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` y reemplázala por el ID de tu suscripción real de Azure.
+2. **Credenciales:** Los campos `admin_password` han sido vaciados por seguridad. Deberás asignar una contraseña segura para el administrador en cada bloque de máquina virtual.
+3. **Ajuste de Tamaños (Opcional):** Verifica que el tamaño de las VMs (`Standard_DC1s_v3`) esté disponible en tu región de Azure y se ajuste a los créditos de tu capa gratuita.
