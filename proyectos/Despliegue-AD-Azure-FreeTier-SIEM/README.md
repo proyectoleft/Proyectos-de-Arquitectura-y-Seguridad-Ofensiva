@@ -34,7 +34,7 @@ El laboratorio consta de los siguientes componentes dentro de la VNet (`10.0.0.0
 
 Todo el proceso de construcción, desde la configuración de la red hasta la ejecución de consultas KQL para la validación de eventos, está detallado en nuestra guía principal.
 
-👉 **[Ver la Guía de Despliegue Completa](./Implementacion_paso_A_paso/explciacion_git.md)**
+👉 **[Ver la Guía de Despliegue Completa](./Implementacion_paso_A_paso/README.md)**
 
 ## 🔍 Casos de Uso (Próximos Pasos)
 Este entorno base está listo para:
